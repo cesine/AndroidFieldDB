@@ -1,0 +1,19 @@
+{
+  "name": "AndroidFieldDB TouchDB Bootstrapper",
+  "version": "1.0",
+  "description": "This is a chrome extension for testing the Android FieldDB bootstrapper",
+  
+  "app": {
+    "launch": {
+      "local_path": "authentication.html"
+    }
+  },
+  "offline_enabled": true,
+  "permissions": [
+    "unlimitedStorage",
+    "<all_urls>"
+  ],
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'self'; script-src 'self'  ; connect-src 'self' https://localhost:6984 https://corpus.lingsync.org https://ifielddevs.iriscouch.com ; object-src 'self' ;"
+ 
+}

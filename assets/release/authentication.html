@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+	<div id="user-welcome-modal" data-backdrop="static" class="modal ">
+		<img src="icon.png" class="pull-right" />
+
+		<div class="modal-body">
+			<input id="username" type="text" placeholder="username" /><br />
+			<div class="error"></div>
+			<input id="password" type="password" placeholder="password" /> <br />
+			<input id="authURL" type="text"
+				placeholder="https://auth.lingsync.org" /> <br />
+			<button class="btn btn-primary submit">Login</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.couch.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="OPrime.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

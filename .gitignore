@@ -17,7 +17,7 @@ local.properties
 build.properties
 
 #ignore compiled handlebars
-release
+#release
 compiled_handlebars.js
 *.handlebars.js
 
