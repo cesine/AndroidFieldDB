@@ -1,11 +1,11 @@
 {
   "name": "AndroidFieldDB TouchDB Bootstrapper",
   "version": "1.0",
-  "description": "This is a chrome extension for testing the Android FieldDB bootstrapper",
+  "description": "This is a chrome extension for testing the Android AndroidFieldDB bootstrapper",
   
   "app": {
     "launch": {
-      "local_path": "authentication.html"
+      "local_path": "splash.html"
     }
   },
   "offline_enabled": true,

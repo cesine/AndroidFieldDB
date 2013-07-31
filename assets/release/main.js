@@ -1,27 +1,13 @@
-var urlIsTouchDBReady = localStorage.getItem("urlIsTouchDBReady")
-    || "https://localhost:6984/ginalocal4-secondcorpus/_design/pages/index.html";
-var authURL = localStorage.getItem("authURL") || "https://localhost:6984";
-// alert("Loading...");
+var urlIsTouchDBReady = "";
 
-if (OPrime.isAndroidApp()) {
-  var tempUrlIsTouchDBReady = Android.getLocalCouchAppURL();
-  if (tempUrlIsTouchDBReady) {
-    urlIsTouchDBReady = tempUrlIsTouchDBReady;
-  }
-  console.log("contacting urlIsTouchDBReady is " + urlIsTouchDBReady);
-  var tempAuthUrl = Android.getRemoteServerDomain();
-  if (tempAuthUrl) {
-    authURL = "https://" + tempAuthUrl;
-  }
-//  alert("AuthURL from android " + authURL);
+/* override the url using a parameter from the url if present */
+var urlInParameter = window.location.hash;
+if(urlInParameter){
+  //Java: .replaceAll("/", "ssslashhh").replaceAll("\\.", "dddottt").replaceAll(":", "sssemicolonnn")
+  urlIsTouchDBReady = urlInParameter.replace(/ssslashhh/g,"/").replace(/dddottt/g,".").replace(/sssemicolonnn/g,":").replace("#/","");
 }
-/*
- * Initialize the form with the user's information
- */
-$("#username").val(localStorage.getItem("username") || "public");
-$("#password").val(localStorage.getItem("password") || "none");
-$("#authURL").val(localStorage.getItem("authURL") || authURL);
-
+console.log("urlIsTouchDBReady: "+urlIsTouchDBReady);
+console.log("checking db: "+urlIsTouchDBReady)
 var checkToSeeIfTouchDBReady = function(failcallback) {
   $
       .ajax({
@@ -44,7 +30,8 @@ var checkToSeeIfTouchDBReady = function(failcallback) {
           if (response.responseText) {
             if (response.responseText.indexOf("<html") >= 0) {
               localStorage.setItem("urlIsTouchDBReady", urlIsTouchDBReady);
-//              alert("Your offline databse is ready, not authenticating you online.");
+              // alert("Your offline databse is ready, not authenticating you
+              // online.");
               window.location.replace(urlIsTouchDBReady);
               return;
             }
@@ -55,50 +42,14 @@ var checkToSeeIfTouchDBReady = function(failcallback) {
               alert("Waiting for CouchDB to load...");
               // Loop every 2 sec waiting for the database to load
             }
-            window.setTimeout(checkToSeeIfTouchDBReady, 2000);
           }
+          window.setTimeout(checkToSeeIfTouchDBReady, 2000);
 
-          $("#user-welcome-modal").modal("show");
 
         },
         dataType : "json"
       });
 
 };
-
-$(".submit").click(
-    function() {
-      authURL = document.getElementById("authURL").value;
-      $.couch.urlPrefix = document.getElementById("authURL").value;
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-      $.couch.login({
-        name : username,
-        password : password,
-        success : function() {
-          localStorage.setItem("username", username);
-          localStorage.setItem("password", password);
-          localStorage.setItem("authURL", authURL);
-          $(".error").html("Downloading your firstcorpus database...");
-          if (OPrime.isAndroidApp()) {
-            Android.setCredentialsAndReplicate(username + "-firstcorpus",
-                username, password, authURL.replace("https://", "").replace(
-                    "http://", ""));
-          } else {
-            urlIsTouchDBReady = authURL + "/" + username
-                + "-firstcorpus/_design/pages/index.html";
-          }
-          checkToSeeIfTouchDBReady();
-        },
-        error : function(code, error, reason) {
-          console.log("Here is error code " + code + " error: "
-              + JSON.stringify(error) + " reason: " + JSON.stringify(reason));
-          // if (code == "401") {
-          $(".error").html(reason);
-          // }
-        }
-      });
-
-    });
 
 checkToSeeIfTouchDBReady();
