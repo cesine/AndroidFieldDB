@@ -1,7 +1,7 @@
 {
-  "name": "Pivot88 TouchDB Bootstrapper",
+  "name": "AndroidFieldDB TouchDB Bootstrapper",
   "version": "1.0",
-  "description": "This is a chrome extension for testing the Android Pivot88 bootstrapper",
+  "description": "This is a chrome extension for testing the Android AndroidFieldDB bootstrapper",
   
   "app": {
     "launch": {
@@ -14,6 +14,6 @@
     "<all_urls>"
   ],
   "manifest_version": 2,
-  "content_security_policy": "default-src 'self'; script-src 'self'  ; connect-src 'self' https://localhost:6984 https://wentworthinspections.iriscouch.com ; object-src 'self' ;"
+  "content_security_policy": "default-src 'self'; script-src 'self'  ; connect-src 'self' https://localhost:6984 https://corpus.lingsync.org https://ifielddevs.iriscouch.com ; object-src 'self' ;"
  
 }
