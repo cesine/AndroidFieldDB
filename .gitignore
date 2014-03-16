@@ -1,81 +1,35 @@
-# built application files
-*.apk
-*.ap_
 
-# files for the dex VM
-*.dex
-
-# Java class files
-*.class
-
-# generated files
-/bin/
-/gen/
-
-# Local configuration file (sdk path, etc)
-local.properties
-build.properties
-
-#ignore compiled handlebars
-#release
-compiled_handlebars.js
-*.handlebars.js
-
-#ignore private config files
-*_production*
-*private*
-
-# Ignore natural lib 
-public/libs/natural/
-
-.wav
-audio_stimuli
-
-.idea
+AndroidClient/assets/release
+# private constants #
+*nonpublic*
+node_modules
 .project
 .settings
 .classpath
-proguard.cfg
+local.properties
+*~
+.gradle
+/out
+/intellij
+/website/build
+/website/website.iml
+/website/website.ipr
+/website/website.iws
+*.iml
+*.ipr
+*.iws
+*.classpath
+*.project
+*.settings
+/bin
+.DS_Store
+.textmate
+.idea
+*.sublime-*
 
-node_modules
+build
 bin
 gen
-
-# Node #
-########
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
-
-node_modules
-npm-debug.log
-
-# LaTeX output #
-################
-*.dvi
-*.log
-*.aux
-*.toc
-*.bbl
-*.blg
-*.glg
-*.glo
-*.gls
-*.idx
-*.ilg
-*.ind
-*.ist
-*.ps
-*(busy)
 
 # Compiled source #
 ###################
@@ -102,15 +56,28 @@ target
 
 # Logs and databases #
 ######################
-#*.log
-#*.sql
-#*.sqlite
+*.log
+*.sql
+*.sqlite
 
 # OS generated files #
 ######################
+.DS_Store?
 .DS_Store
 ehthumbs.db
 Icon?
 Thumbs.db
-*.swp
+.directory
 
+**/.DS_Store
+nbproject
+manifest.mf
+build.xml
+
+.swp
+.project
+.settings
+.idea/*
+
+
+!**/gradle/wrapper/gradle-wrapper.jar 
