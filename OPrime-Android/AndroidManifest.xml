@@ -73,6 +73,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="ca.ilanguage.oprime.storybook.StoryBookSubExperiment"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="ca.ilanguage.oprime.ui.HTML5GameActivity"
             android:exported="false"
             android:label="@string/app_name" >
