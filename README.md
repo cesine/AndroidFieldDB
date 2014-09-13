@@ -1,22 +1,20 @@
-## Deviations from the iOS version
+An Android app which lets the user build a custom visual and auditory vocabulary, useful for guided anomia treatment and self designed language lessons by heritage speakers. 
 
-Android typically uses a long-click to trigger additional action, as opposed to swipe-to-delete, so this convention was followed.
+Plugs into FieldDB databases to create language learning apps.
 
-## Known Issues
-
-- We currently do not handle the Sync URL changing at runtime (if you change it you have to restart the app)
+[![Video shows how heritage speakers can use field methods techniques and a Learn X app to practice with their friends and family.](http://img.youtube.com/vi/nULRWUMUc-I/0.jpg)](https://www.youtube.com/watch?v=nULRWUMUc-I)
 
 
+Install
+You can see what this code base is for by installing this app (which was customized for Kartuli/Georgian heritage speakers).
+https://play.google.com/store/apps/details?id=com.github.opensourcefieldlinguistics.fielddb.lessons.georgian
 
 
-Notes:
+Tablet uses fragments side by side:
+![learn_x_tablet](https://f.cloud.github.com/assets/196199/2483261/6c4e6442-b0fe-11e3-93df-e74309100571.png)
 
-merged the TouchDB GrocerySync app with the existing AndroidFieldDB
+Phone uses list:
+![learn_x_phone_list](https://f.cloud.github.com/assets/196199/2483266/7cb070b4-b0fe-11e3-9a42-de24f7e1be3f.png)
 
-grocerysync: https://github.com/Kedersha/AndroidGrocerySync
-
-GrocerySync was an existing, working Android app that gave a structure for TouchDB to work within. It was pretty simple, and just consisted of a list of items that you could add to or delete. It also contacted IrisCouch to sync with the version stored on the Android.
-
-Android FieldDB will hopefully be a working version of the existing FieldDB/LingSync project for field linguists. It will be able to help store and organize linguistic data offline on the Android (and sync).
-
-To help the Android FieldDB work, we needed TouchDB to be usable, so we sort of cannibalized the GrocerySync app for its usable TouchDB. Everything's in rough shape still.
+And a separate detail screen (here with speech recognition showing)
+![learn_x_phone_speech_recognition](https://f.cloud.github.com/assets/196199/2483269/837d01f0-b0fe-11e3-8707-748ab9b02022.png)

@@ -1,6 +1,10 @@
 
 AndroidClient/assets/release
+assets/sync
+
 # private constants #
+*PrivateConstants.java
+sslkeystore.bks
 *nonpublic*
 node_modules
 .project
