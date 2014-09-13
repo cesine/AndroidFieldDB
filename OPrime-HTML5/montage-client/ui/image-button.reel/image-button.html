@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="image-button.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "imageButton"}
+            }
+        },
+        "image": {
+            "prototype": "digit/ui/image.reel",
+            "properties": {
+                "element": {"#": "image"},
+                "enabled": true
+            },
+            "bindings": {
+                "src": {"<-": "'../../' + @owner.src"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div data-montage-id="imageButton" class="ImageButton">
+        <img data-montage-id="image" class="" src="../../assets/img/blank.png"/>
+    </div>
+
+</body>
+</html>

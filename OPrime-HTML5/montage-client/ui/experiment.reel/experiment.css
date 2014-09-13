@@ -1,0 +1,136 @@
+.Experiment {
+    /* creates space for footer */
+    height:80%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    opacity: .9;
+}
+
+.Experiment-previous-button {
+    float: left;
+    text-align: left;
+    margin: 10px;
+    width: 40%;
+}
+
+.Experiment-next-button {
+    float: right;
+    text-align: right;
+    margin: 10px;
+    width: 40%;
+}
+
+.Experiment-replay-button {
+    float: left;
+    text-align: center;
+    margin: 10px;
+    width: 15%;
+}
+
+.Experiment-next-button button , .Experiment-replay-button button, .Experiment-previous-button  button {
+    font-weight: 900;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.Experiment-content-container {
+    position: absolute;
+    width: 100%;
+    top: 10%;
+}
+
+/* creates space for an overlay header with experiment controls */
+.Experiment header {
+    position: absolute;
+    top: -8em;
+    width: 100%;
+    text-align: center;
+    /*background: #cccccc;*/
+    height: 8em;
+    opacity: .5;
+    z-index: 200;
+}
+
+/* creates space for an overlay footer with experiment details */
+.Experiment footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #cccccc;
+    height: 10%;
+    opacity: .5;
+    z-index: 400;
+}
+
+.Experiment-response-debug {
+    margin-left: 1em;
+}
+
+/* creates a transparent overlay which talks about the experiment, useful for tutorial mode */
+.Experiment-details {
+    opacity: .8;
+    position: absolute;
+    background-color: #fafafa;
+    color: #333;
+    top: 0;
+    right: 0;
+    height: 100%;
+    text-align: right;
+    font-size: 1.5em;
+    padding: 2em;
+    z-index: 300;
+}
+
+.Experiment-results {
+    opacity: 1;
+    position: absolute;
+    /*background-color: #ffffff;
+    color: #333;*/
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    z-index: 250;
+}
+
+/* creates a transparent overlay which talks about the experiment, useful for tutorial mode */
+.Experiment-ExperimenterButtons {
+    opacity: .8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    text-align: center;
+    padding: 2em;
+    z-index: 240;
+}
+
+.Experiment-ExperimenterButtons button {
+    margin-top: 1em;
+}
+
+.txtUpsideDown {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2 );
+    /* IE6,IE7 */
+    ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+    /* IE8 */
+    -moz-transform: rotate(-180deg); /* FF3.5+ */
+    -o-transform: rotate(-180deg); /* Opera 10.5 */
+    -webkit-transform: rotate(-180deg); /* Safari 3.1+, Chrome */
+    transform: rotate(-180deg); /* FF3.5+ */
+}
+
+
+.Experiment-start-pause-button-area {
+    position: absolute;
+    text-align: center;
+    top: 35%;
+    left: 0;
+    width: 100%;
+    min-width: 2em;
+}
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="report.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "report"}
+            }
+        },
+        "experimentReport": {
+            "prototype": "ui/report.reel/experiment-report.reel",
+            "properties": {
+                "element": {"#": "experimentReport"}
+            },
+            "bindings": {
+                "experimentalDesign": {"<->": "@owner.experimentalDesign"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="report" class="Report">
+        <div data-montage-id="experimentReport"></div>
+    </div>
+</body>
+</html>

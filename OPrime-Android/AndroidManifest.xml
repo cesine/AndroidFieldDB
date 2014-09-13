@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ca.ilanguage.oprime"
+    android:installLocation="preferExternal"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="20" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!--
+    <uses-permission android:name="ca.ilanguage.oprime.permission.START_AUDIO_RECORDING_SERVICE" />
+    <uses-permission android:name="ca.ilanguage.oprime.permission.SAVE_SUB_EXPERIMENT_JSON" />
+    -->
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="ca.ilanguage.oprime.ui.OPrimeLib"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.ui.ExperimentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:parentActivityName="ca.ilanguage.oprime.ui.ExperimentListActivity" >
+
+            <!-- ca.ilanguage.oprime.intent.action.START_SUB_EXPERIMENT -->
+            <!-- ca.ilanguage.oprime.intent.action.START_TWO_IMAGE_SUB_EXPERIMENT -->
+            <!-- ca.ilanguage.oprime.intent.action.START_STOP_WATCH_SUB_EXPERIMENT -->
+            <!-- ca.ilanguage.oprime.intent.action.START_STORY_BOOK_SUB_EXPERIMENT -->
+            <!-- ca.ilanguage.oprime.intent.action.START_HTML5_SUB_EXPERIMENT -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.ilanguage.oprime.ui.ExperimentListActivity" />
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.ui.ExperimentListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.ui.SubExperiment"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.storybook.StoryBookSubExperiment"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.ui.HTML5GameActivity"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.datacollection.TakePicture"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/app_name" >
+
+            <!-- ca.ilanguage.oprime.intent.action.TAKE_PICTURE -->
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.datacollection.StopAudioRecorder"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ca.ilanguage.oprime.datacollection.VideoRecorder"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="ca.ilanguage.oprime.intent.action.START_VIDEO_RECORDING_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- All services must be listed in the manifest before they can be used -->
+        <service android:name="ca.ilanguage.oprime.datacollection.SubExperimentToJson" >
+
+            <!-- ca.ilanguage.oprime.intent.action.SAVE_SUB_EXPERIMENT_JSON -->
+        </service>
+        <service android:name="ca.ilanguage.oprime.datacollection.AudioRecorder" >
+            <intent-filter>
+                <action android:name="ca.ilanguage.oprime.intent.action.START_AUDIO_RECORDING_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="ca.ilanguage.oprime.database.UserContentProvider"
+            android:authorities="ca.ilanguage.oprime.user"
+            android:exported="false" >
+        </provider>
+    </application>
+
+</manifest>
