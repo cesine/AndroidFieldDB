@@ -9,7 +9,22 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.github.fielddb.BuildConfig;
 import com.github.fielddb.Config;
+import com.github.fielddb.datacollection.NotifyingIntentService;
+import com.google.gson.JsonObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 public class CorpusSyncAdapter extends AbstractThreadedSyncAdapter {
   // Global variables
@@ -65,5 +80,82 @@ public class CorpusSyncAdapter extends AbstractThreadedSyncAdapter {
 
     Log.d(Config.TAG, "onPerformSync");
 
+    CookieManager cookieManager = new CookieManager();
+    // cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+    CookieHandler.setDefault(cookieManager);
+
+    String urlStringAuthenticationSession = Config.DEFAULT_DATA_LOGIN;
+    URL url;
+    HttpURLConnection urlConnection;
+    try {
+      url = new URL(urlStringAuthenticationSession);
+      urlConnection = (HttpURLConnection) url.openConnection();
+      urlConnection.setRequestMethod("POST");
+      urlConnection.setRequestProperty("Content-Type", "application/json");
+      urlConnection.setDoInput(true);
+      urlConnection.setDoOutput(true);
+      urlConnection.connect();
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+      return;
+    } catch (ProtocolException e) {
+      e.printStackTrace();
+      return;
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    JsonObject jsonParam = new JsonObject();
+    jsonParam.addProperty("name", "public");
+    jsonParam.addProperty("password", "none");
+    DataOutputStream printout;
+    try {
+      printout = new DataOutputStream(urlConnection.getOutputStream());
+      String jsonString = jsonParam.toString();
+      printout.write(jsonString.getBytes());
+      printout.flush();
+      printout.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    if (!url.getHost().equals(urlConnection.getURL().getHost())) {
+      Log.d(Config.TAG, "We were redirected! Kick the user out to the browser to sign on?");
+    }
+    /* Open the input or error stream */
+    int status;
+    try {
+      status = urlConnection.getResponseCode();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+    if (BuildConfig.DEBUG) {
+      Log.d(Config.TAG, "Server status code " + status);
+    }
+    BufferedInputStream responseStream;
+    try {
+      if (status < 400 && urlConnection.getInputStream() != null) {
+        responseStream = new BufferedInputStream(urlConnection.getInputStream());
+      } else {
+        responseStream = new BufferedInputStream(urlConnection.getErrorStream());
+      }
+      BufferedReader responseStreamReader = new BufferedReader(new InputStreamReader(responseStream));
+      String line = "";
+      StringBuilder stringBuilder = new StringBuilder();
+      while ((line = responseStreamReader.readLine()) != null) {
+        stringBuilder.append(line).append("\n");
+      }
+      responseStreamReader.close();
+
+      JSONResponse = stringBuilder.toString();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    Log.d(Config.TAG, url + ":::" + JSONResponse);
   }
 }
