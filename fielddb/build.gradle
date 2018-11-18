@@ -13,6 +13,7 @@ android {
         versionCode 5
         versionName version
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        setProperty("archivesBaseName", "fielddb")
     }
     buildTypes {
         release {
