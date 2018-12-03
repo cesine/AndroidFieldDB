@@ -9,6 +9,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.acra.ACRA;
 import org.acra.ACRAConfiguration;
@@ -46,6 +48,7 @@ import com.github.fielddb.service.RegisterUserService;
 public class FieldDBApplication extends Application {
   protected User mUser;
   protected Intent mUpdateSampleData;
+  protected Pattern timestampPattern = Pattern.compile("([a-z]+)([0-9]+)$");
 
   @Override
   public void onCreate() {
@@ -157,6 +160,13 @@ public class FieldDBApplication extends Application {
       String subtitle = cursor.getString(cursor.getColumnIndexOrThrow(UserTable.COLUMN_SUBTITLE));
       String generatedPassword = cursor.getString(cursor.getColumnIndexOrThrow(UserTable.COLUMN_GENERATED_PASSWORD));
       String actualJSON = "";
+
+      Matcher matcher = timestampPattern.matcher(username);
+      if (generatedPassword == null || "".equals(generatedPassword)) {
+        while(matcher.find()) {
+          generatedPassword = matcher.group(2);
+        }
+      }
 
       try {
         Account account = createSyncAccount(getApplicationContext(), username, generatedPassword);
